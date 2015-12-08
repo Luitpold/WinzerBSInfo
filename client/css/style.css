@@ -18,6 +18,7 @@ body{
 
 *{
   box-sizing: border-box;
+  font-family: Helvetica;
 }
 
 [class*="col-"]{
@@ -37,6 +38,18 @@ body{
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/*.menu:hover{
+  background-color: lightblue;
+}*/
+
+.menu > *:hover{
+  background-color: lightblue;
+}
+
+.menu > *:active{
+  background-color: lightgray;
 }
 
 .aside{
