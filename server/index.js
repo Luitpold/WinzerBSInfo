@@ -12,9 +12,13 @@ var app = express();
 var httpServer = http.createServer(app);
 
 function init(httpPort, httpsPort){
-  console.log((getDate() + ' STATUS:').blue + '\tstarting http-Server..');
+  colors.setTheme({
+    error: ['white', 'bgRed']
+  });
+
+  console.log(getStatusPrefix() + '\tstarting http-Server..');
   httpServer.listen(httpPort);
-  console.log((getDate() + ' STATUS:').blue + '\thttp-Servers running!\n' + (getDate() + ' STATUS:').blue + '\tstarting https-Server..');
+  console.log(getStatusPrefix() + '\thttp-Servers running!\n' + getStatusPrefix() + '\tstarting https-Server..');
   startHttpsServer();
 }
 
@@ -29,9 +33,13 @@ function startHttpsServer(){
     console.log('STATUS:'.blue + '\thttps-Servers running!');
     useSsl = true;
   }catch(e){
-    console.log((getDate() + ' STATUS:').blue + '\thttps-Server was not created!')
-    console.log(('\tReason: \t' + e).red);
+    var err = ('' + e).error;
+    console.log(getStatusPrefix() + '\thttps-Server was not created!\n'+ err);
   }
+}
+
+function getStatusPrefix(){
+  return (getDate() + ' STATUS:').blue
 }
 
 function getDate(){
