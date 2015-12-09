@@ -22,10 +22,10 @@ function init(httpPort, httpsPort){
   console.log(getStatusPrefix() + '\tstarting http-Server..');
   httpServer.listen(httpPort); //start http server
   console.log(getStatusPrefix() + '\thttp-Servers running!\n' + getStatusPrefix() + '\tstarting https-Server..');
-  startHttpsServer(); //start https server
+  startHttpsServer(httpsPort); //start https server
 }
 
-function startHttpsServer(){
+function startHttpsServer(httpsPort){
   try{ //check if the credentials are provided (/ssl/server.key; /ssl/server.cert)
     var privateKey = fs.readFileSync(__dirname + '/../ssl/server.key', 'utf8');
     var certificate = fs.readFileSync(__dirname + '/../ssl/server.cert', 'utf8');
